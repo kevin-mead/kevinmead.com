@@ -271,7 +271,7 @@ summary::-webkit-details-marker {
 }
 
 /* Center "read more" text at less than 600px */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   details {
     display: block;          /* Change to block, so details takes full width */
   }
@@ -302,7 +302,7 @@ h2 {
 }
 
 /* center this stuff on mobile */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   h1, h2, h3 {
     text-align: center;
     /* margin: 0 auto; */
@@ -316,7 +316,7 @@ h2 {
   margin-top: 3px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .wsubline {
     text-align: center; /* Centers the text within the container */
     margin-left: auto;  /* Optional: Adjust margins for centering */
@@ -388,28 +388,28 @@ h2 {
 }
 
 /* Show up to 2 images for small screens */
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .lightgallery a:nth-child(2) {
     display: block;
   }
 }
 
 /* Show up to 3 images for medium screens */
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .lightgallery a:nth-child(3) {
     display: block;
   }
 }
 
 /* Show up to 4 images for large screens */
-@media (min-width: 1024px) {
+/* @media (min-width: 1600px) {
   .lightgallery a:nth-child(4) {
     display: block;
   }
-}
+} */
 
 /* Center lightgallery on small screens */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .lightgallery {
     justify-content: center; /* Centers the images horizontally */
     width: 100%; /* Ensures it spans the full width */
