@@ -6,7 +6,7 @@
   <title>About | Kevin Mead</title>
   <meta name="description" content="About Kevin Mead">
   <link rel="stylesheet" href="../pagesstyle.css"/>
-  <link rel="icon" type="image/png" href="../images/fav.png"/>
+  <link rel="shortcut icon" type="image/x-icon" href="https://kevinmead.com/favicon.png">
 
 
 </head>
@@ -23,20 +23,20 @@
     <span class="letter">e</span>
   </div>
 
-  <!-- Add this right before your navbar -->
-<div class="hamburger-menu">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
-  <nav class="navbar">
-    <a href="/index.html">Home</a>
+  <nav class="nav-container">
+    <button class="hamburger" aria-label="Toggle menu">
+      &#9776; <!-- Hamburger Icon -->
+    </button>
+    <div class="navbar">
+    <a href="/">Home</a>
     <a href="/about">About Me</a>
     <a href="/works">Works</a>
     <a href="/cv">Resume/CV</a>
     <a href="/contact">Say Hi</a>
+    </div>
   </nav>
+
+  
 
 <div>
 <p><b>Kevin Mead is a media, performance and internet artist living in New York City.</b> Common themes in their work include myth-making, the internet, and garbage. 
@@ -51,6 +51,36 @@
 </div>
 
 <div class="floor"></div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navbar = document.querySelector(".navbar");
+  
+  // Function to manage navbar display based on screen width
+  function manageNavbarDisplay() {
+    if (window.innerWidth > 600) {
+      navbar.style.display = 'flex';
+    } else {
+      navbar.style.display = 'none';
+    }
+  }
+
+  // Initial setup
+  manageNavbarDisplay();
+
+  // Hamburger click event
+  hamburger.addEventListener("click", () => {
+    navbar.style.display = navbar.style.display === 'none' ? 'flex' : 'none';
+  });
+
+  // Resize event listener
+  window.addEventListener('resize', manageNavbarDisplay);
+});
+
+</script>
 
 </body>
 

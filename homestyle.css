@@ -2,6 +2,8 @@
   border: 1px solid red;
 } */
 
+
+
 /* fonts */
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;500&display=swap');
 
@@ -14,7 +16,7 @@
     height: 100vh;
     margin: 0;
     color: white;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     overflow: hidden;
     background-size: cover;
     background: url('images/rac.gif') no-repeat center center fixed;

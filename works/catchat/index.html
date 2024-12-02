@@ -123,17 +123,17 @@
             cursor: pointer; /* Make images appear clickable */
         }
 
-        /* Custom Lightbox styling for Lity */
-        .lity-wrap .lity-content img {
-            max-width: 70vw !important; /* 70% of viewport width */
-            max-height: 70vh !important; /* 70% of viewport height */
-            object-fit: contain !important; /* Maintain aspect ratio within forced dimensions */        }
-
         /* Override any Lity default max-width/height settings */
         .lity-content {
             max-width: none !important;
             max-height: none !important;
         }
+        
+        /* Custom Lightbox styling for Lity */
+        .lity-wrap .lity-content img {
+            max-width: 70vw !important; /* 70% of viewport width */
+            max-height: 70vh !important; /* 70% of viewport height */
+            object-fit: contain !important; /* Maintain aspect ratio within forced dimensions */        }
 
         .lity-container {
             max-width: none !important;

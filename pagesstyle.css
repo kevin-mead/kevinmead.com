@@ -1,10 +1,10 @@
 /* debug */
-/* div{ */
-  /* border: 1px solid red; */
-/* } */
+ /* div { 
+  border: 1px solid red;
+ } */
 
 /* fonts */
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;500&display=swap');
 
 body {
   font-family: 'Outfit', sans-serif;
@@ -356,6 +356,20 @@ h2 {
 .image-container img:hover {
   transform: scale(1.01); 
   /* Scales the image to 105% of its size */
+}
+
+/* Style for video thumbnails */
+.video-thumbnail {
+  width: 100%;
+  height: auto;
+  max-height: 40vh; /* Matches the image container height */
+  object-fit: cover; /* Ensures the video fits nicely inside the container */
+  border-radius: 8px; /* Add any desired styling similar to image thumbnails */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.01); /* Same hover effect as images */
 }
 
 /* Default: Hide all images */
