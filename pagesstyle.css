@@ -358,6 +358,13 @@ h2 {
   /* Scales the image to 105% of its size */
 }
 
+/* trying to get rid of stutter */
+@media (hover: none) and (pointer: coarse) {
+  .image-container img:hover {
+    transform: scale(0); 
+  }
+}
+
 /* Style for video thumbnails */
 .video-thumbnail {
   width: 100%;
