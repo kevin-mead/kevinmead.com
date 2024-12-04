@@ -197,35 +197,6 @@ a:hover {
   color: #ff7f50; /* Link color on hover */
 }
 
-/* Hamburger Menu for mobile */
-.hamburger {
-  display: none;
-  font-size: 2em;
-  cursor: pointer;
-}
-
-/* Media Queries for hamburger */
-@media (max-width: 768px) { 
-  .nav-links { 
-    display: none; 
-    flex-direction: column;
-    width: 100%; 
-  } 
-
-  .nav-links a { 
-    font-size: 1em; 
-    padding: 15px; /* Add padding around each link */
-    width: 100%; 
-    text-align: center;
-    margin: 10px 0; /* Space out the links */
-    border: 1px solid white; /* Add border around each link */
-  } 
-
-  .hamburger { 
-    display: block; 
-  }
-}
-
 /* collapsing HTML */
 
 /* from https://dev.to/jordanfinners/creating-a-collapsible-section-with-nothing-but-html-4ip9 */
@@ -357,6 +328,7 @@ h2 {
   transform: scale(1.01); 
   /* Scales the image to 105% of its size */
 }
+
 
 /* Style for video thumbnails */
 .video-thumbnail {
