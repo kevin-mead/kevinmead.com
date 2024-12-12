@@ -48,31 +48,6 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const navbar = document.querySelector(".navbar");
-  
-  // Function to manage navbar display based on screen width
-  function manageNavbarDisplay() {
-    if (window.innerWidth > 600) {
-      navbar.style.display = 'flex';
-    } else {
-      navbar.style.display = 'none';
-    }
-  }
-
-  // Initial setup
-  manageNavbarDisplay();
-
-  // Hamburger click event
-  hamburger.addEventListener("click", () => {
-    navbar.style.display = navbar.style.display === 'none' ? 'flex' : 'none';
-  });
-
-  // Resize event listener
-  window.addEventListener('resize', manageNavbarDisplay);
-});
-
 </script>
 
 </body>
