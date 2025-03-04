@@ -123,6 +123,14 @@
             cursor: pointer; /* Make images appear clickable */
         }
 
+        #sendButton {
+    width: 50px; /* Adjust based on your image size */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Make it look clickable */
+    margin-left: 10px; /* Add some spacing between the input and the button */
+    vertical-align: middle; /* Align with the input field */
+}
+
         /* Override any Lity default max-width/height settings */
         .lity-content {
             max-width: none !important;
@@ -200,7 +208,7 @@
     <div id="chatbox"></div>
     <div id="inputArea">
         <input type="text" id="userInput" autofocus>
-        <button onclick="send()">Send</button>
+        <img src="sendbutton.png" alt="Send" id="sendButton" onclick="send()">
     </div>
 
     <script>
