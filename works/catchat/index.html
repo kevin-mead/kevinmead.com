@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🌐</title>
+    <title>🌐 CatChat</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" rel="stylesheet">
@@ -103,7 +103,8 @@
             }
         }
 
-        #chatbox {
+        /* non embossed */
+        /* #chatbox {
             width: 100%;
             min-height: 400px;
             max-height: calc(100vh - 200px);
@@ -113,7 +114,37 @@
             padding: 20px;
             box-sizing: border-box;
             word-wrap: break-word;
-        }
+        } */
+
+        #chatbox {
+    width: 100%;
+    min-height: 400px;
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+    margin-bottom: 10px;
+    background-color: rgba(245, 245, 245, 0.3); /* Slightly off-white for depth */
+    padding: 20px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+
+    /* Dramatic Skeuomorphic Embossed Effect */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px; /* Rounded corners for a softer look */
+    box-shadow:
+        inset 0 8px 12px rgba(255, 255, 255, 0.6), /* Strong inner highlight */
+        inset 0 -8px 12px rgba(0, 0, 0, 0.4),      /* Strong inner shadow */
+        0 12px 24px rgba(0, 0, 0, 0.3);           /* Outer shadow for depth */
+
+    /* Gradient background for extra depth */
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.8),
+        rgba(230, 230, 230, 0.8)
+    );
+
+    /* Optional: Add a subtle texture for realism */
+    background-blend-mode: overlay;
+}
 
         #chatbox img.cat-image {
             width: 20vw; /* 20% of viewport width */
@@ -123,13 +154,14 @@
             cursor: pointer; /* Make images appear clickable */
         }
 
+/* cat face send button */
         #sendButton {
-    width: 50px; /* Adjust based on your image size */
-    height: auto; /* Maintain aspect ratio */
-    cursor: pointer; /* Make it look clickable */
-    margin-left: 10px; /* Add some spacing between the input and the button */
-    vertical-align: middle; /* Align with the input field */
-}
+            width: 50px; /* Adjust based on your image size */
+            height: auto; /* Maintain aspect ratio */
+            cursor: pointer; /* Make it look clickable */
+            margin-left: 10px; /* Add some spacing between the input and the button */
+            vertical-align: middle; /* Align with the input field */
+        }
 
         /* Override any Lity default max-width/height settings */
         .lity-content {
@@ -208,7 +240,7 @@
     <div id="chatbox"></div>
     <div id="inputArea">
         <input type="text" id="userInput" autofocus>
-        <img src="sendbutton.png" alt="Send" id="sendButton" onclick="send()">
+        <img src="styledsendbutton.png" alt="Send" id="sendButton" onclick="send()">
     </div>
 
     <script>
