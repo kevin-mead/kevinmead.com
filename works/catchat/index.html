@@ -3,8 +3,8 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🌐 CatChat</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>CatChat</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -127,7 +127,7 @@
     box-sizing: border-box;
     word-wrap: break-word;
 
-    /* Dramatic Skeuomorphic Embossed Effect */
+    /* Skeuomorphic Embossed Effect */
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 12px; /* Rounded corners for a softer look */
     box-shadow:
@@ -144,6 +144,12 @@
 
     /* Optional: Add a subtle texture for realism */
     background-blend-mode: overlay;
+}
+
+img.chat-icon {
+    height: 1em; /* Scale with text size */
+    vertical-align: middle; /* Align with text */
+    margin-right: 5px; /* Add spacing between the icon and text */
 }
 
         #chatbox img.cat-image {
@@ -268,13 +274,18 @@
         });
 
         // Periodically check for inactivity
-        setInterval(function () {
-            if (new Date() - lastActivity > 30000 && !inactiveMessageSent) {
-                chatbox.innerHTML += '<b>🌐:</b> Hey, are you still there? Ask me a question!<br>';
-                chatbox.scrollTop = chatbox.scrollHeight;
-                inactiveMessageSent = true;
-            }
-        }, 1000);
+// Inactivity prompt
+setInterval(function () {
+    if (new Date() - lastActivity > 30000 && !inactiveMessageSent) {
+        chatbox.innerHTML += `
+            <b>
+                <img src="catchat_silo.png" alt="CatChat" class="chat-icon">
+            </b>: Hey, are you still there? Ask me a question!<br>
+        `;
+        chatbox.scrollTop = chatbox.scrollHeight;
+        inactiveMessageSent = true;
+    }
+}, 1000);
 
         // Save chat data to local storage
         function saveChatData() {
@@ -321,25 +332,36 @@
 
         // Response to "Yes" button
         function yes() {
-            chatbox.innerHTML += '<b>🌐:</b> Excellent<br>';
-            chatData.push({ pantherchat: 'Excellent', answered: true });
-            chatbox.scrollTop = chatbox.scrollHeight;
-            saveChatData();
-        }
-
+    chatbox.innerHTML += `
+        <b>
+            <img src="catchat_silo.png" alt="Catchat" class="chat-icon">:
+        </b> Excellent<br>
+    `;
+    chatData.push({ pantherchat: 'Excellent', answered: true });
+    chatbox.scrollTop = chatbox.scrollHeight;
+    saveChatData();
+}
         // Response to "No" button
         function no() {
-            chatbox.innerHTML += '<b>🌐:</b> Sorry. Ask your question again.<br>';
-            chatData.push({ pantherchat: 'Sorry. Ask your question again.', answered: false });
-            chatbox.scrollTop = chatbox.scrollHeight;
-            saveChatData();
-        }
+    chatbox.innerHTML += `
+        <b>
+            <img src="catchat_silo.png" alt="CatChat" class="chat-icon">:
+        </b> Sorry. Ask your question again.<br>
+    `;
+    chatData.push({ pantherchat: 'Sorry. Ask your question again.', answered: false });
+    chatbox.scrollTop = chatbox.scrollHeight;
+    saveChatData();
+}
 
         // Initial prompt after 2 seconds
         setTimeout(function () {
-            chatbox.innerHTML += '<b>🌐:</b> Please enter an inquiry. <br>';
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }, 2000);
+    chatbox.innerHTML += `
+        <b>
+            <img src="catchat_silo.png" alt="CatChat" class="chat-icon">:
+        </b>Please enter an inquiry. <br>
+    `;
+    chatbox.scrollTop = chatbox.scrollHeight;
+}, 2000);
     </script>
     
 
