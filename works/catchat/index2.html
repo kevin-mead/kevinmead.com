@@ -286,7 +286,7 @@ img.chat-icon {
 </head>
 
 <body>
-    <b style="font-size: 40px;">v01.03</b>
+    <b style="font-size: 40px;">v01.04</b>
     <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="theinternet.mp4" type="video/mp4">
@@ -418,15 +418,20 @@ function downloadAnswer(question) {
     var grid = document.createElement('div');
     grid.className = 'cat-grid';
 
+    // Capture the most recent cat images from the chatbox
     var images = chatbox.querySelectorAll('.cat-image');
-    images.forEach((img, index) => {
-        if (index < 5) { // Limit to 5 images
-            var clone = img.cloneNode(true);
-            clone.style.width = '100%';
-            clone.style.height = 'auto';
-            clone.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-            grid.appendChild(clone);
-        }
+    console.log('Images in chatbox:', images); // Debugging line
+
+    // Get the last 5 images
+    var recentImages = Array.from(images).slice(-5);
+    console.log('Recent images:', recentImages); // Debugging line
+
+    recentImages.forEach((img) => {
+        var clone = img.cloneNode(true);
+        clone.style.width = '100%';
+        clone.style.height = 'auto';
+        clone.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        grid.appendChild(clone);
     });
     container.appendChild(grid);
 
@@ -443,6 +448,9 @@ function downloadAnswer(question) {
     // Append the container to the body
     document.body.appendChild(container);
 
+    // Log the container content for debugging
+    console.log('Container content:', container.innerHTML); // Debugging line
+
     // Use html2canvas to capture the container
     html2canvas(container).then(canvas => {
         console.log('Canvas generated successfully');
@@ -450,70 +458,69 @@ function downloadAnswer(question) {
         // Remove the container from the DOM
         document.body.removeChild(container);
 
-        // Convert canvas to image
-        var imageDataURL = canvas.toDataURL('image/png');
-        console.log('Image data URL generated');
+        // Convert canvas to a Blob
+        canvas.toBlob(function (blob) {
+            // Create a File object
+            var file = new File([blob], 'catchat_answer.png', { type: 'image/png' });
 
-        // Check if the user is on iOS
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            // Check if the user is on iOS
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-        if (isIOS) {
-            // For iOS: Open the image in a Lity lightbox with a "Save to Camera Roll" button
-            var lightboxContent = document.createElement('div');
-            lightboxContent.style.textAlign = 'center';
-
-            // Add the image to the lightbox
-            var img = document.createElement('img');
-            img.src = imageDataURL;
-            img.style.maxWidth = '100%';
-            img.style.height = 'auto';
-            img.style.marginBottom = '20px';
-            lightboxContent.appendChild(img);
-
-            // Add a "Save to Camera Roll" button for iOS
-            var saveButton = document.createElement('a');
-            saveButton.href = imageDataURL;
-            saveButton.download = 'catchat_answer.png';
-            saveButton.textContent = 'Save to Camera Roll';
-            saveButton.style.display = 'inline-block';
-            saveButton.style.padding = '10px 20px';
-            saveButton.style.backgroundColor = '#4CAF50';
-            saveButton.style.color = 'white';
-            saveButton.style.textDecoration = 'none';
-            saveButton.style.borderRadius = '5px';
-            saveButton.style.cursor = 'pointer';
-            lightboxContent.appendChild(saveButton);
-
-            // Open the lightbox with Lity
-            lity(lightboxContent);
-        } else if (/Android/.test(navigator.userAgent)) {
-            // For Android: Use the Web Share API if available
-            if (navigator.share) {
-                canvas.toBlob(function (blob) {
-                    var file = new File([blob], 'catchat_answer.png', { type: 'image/png' });
-                    navigator.share({
-                        files: [file],
-                        title: 'CatChat Answer',
-                        text: 'Download this image from CatChat!',
-                    }).catch(console.error);
+            if (isIOS && navigator.share) {
+                // For iOS: Open the Share Sheet
+                navigator.share({
+                    files: [file],
+                    title: 'CatChat Answer',
+                    text: 'Download this image from CatChat!',
+                }).then(() => {
+                    console.log('Share Sheet opened successfully');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                    // Fallback: Open the image in a lightbox
+                    openLightbox(canvas.toDataURL('image/png'));
                 });
+            } else if (/Android/.test(navigator.userAgent) && navigator.share) {
+                // For Android: Use the Web Share API
+                navigator.share({
+                    files: [file],
+                    title: 'CatChat Answer',
+                    text: 'Download this image from CatChat!',
+                }).catch(console.error);
             } else {
-                // Fallback: Trigger download
+                // For Desktop: Trigger download
                 var link = document.createElement('a');
-                link.href = imageDataURL;
+                link.href = canvas.toDataURL('image/png');
                 link.download = 'catchat_answer.png';
                 link.click();
             }
-        } else {
-            // For Desktop: Trigger download
-            var link = document.createElement('a');
-            link.href = imageDataURL;
-            link.download = 'catchat_answer.png';
-            link.click();
-        }
+        });
     }).catch(error => {
         console.error('html2canvas error:', error);
     });
+}
+
+// Helper function to open the image in a lightbox
+function openLightbox(imageDataURL) {
+    var lightboxContent = document.createElement('div');
+    lightboxContent.style.textAlign = 'center';
+
+    // Add the image to the lightbox
+    var img = document.createElement('img');
+    img.src = imageDataURL;
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    img.style.marginBottom = '20px';
+    lightboxContent.appendChild(img);
+
+    // Add instructions for saving the image
+    var instructions = document.createElement('p');
+    instructions.textContent = 'Long-press the image and select "Save Image" to save to your camera roll.';
+    instructions.style.color = '#333';
+    instructions.style.fontSize = '16px';
+    lightboxContent.appendChild(instructions);
+
+    // Open the lightbox with Lity
+    lity(lightboxContent);
 }
 
         // Response to "Yes" button
