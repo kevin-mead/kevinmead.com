@@ -463,36 +463,8 @@ function downloadAnswer(question) {
             // Create a File object
             var file = new File([blob], 'catchat_answer.png', { type: 'image/png' });
 
-            // Check if the user is on iOS
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-            if (isIOS && navigator.share) {
-                // For iOS: Open the Share Sheet
-                navigator.share({
-                    files: [file],
-                    title: 'CatChat Answer',
-                    text: 'Download this image from CatChat!',
-                }).then(() => {
-                    console.log('Share Sheet opened successfully');
-                }).catch((error) => {
-                    console.error('Error sharing:', error);
-                    // Fallback: Open the image in a lightbox
-                    openLightbox(canvas.toDataURL('image/png'));
-                });
-            } else if (/Android/.test(navigator.userAgent) && navigator.share) {
-                // For Android: Use the Web Share API
-                navigator.share({
-                    files: [file],
-                    title: 'CatChat Answer',
-                    text: 'Download this image from CatChat!',
-                }).catch(console.error);
-            } else {
-                // For Desktop: Trigger download
-                var link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = 'catchat_answer.png';
-                link.click();
-            }
+            // Open the image in a lightbox with a "Share" button
+            openLightbox(canvas.toDataURL('image/png'), file);
         });
     }).catch(error => {
         console.error('html2canvas error:', error);
@@ -500,7 +472,7 @@ function downloadAnswer(question) {
 }
 
 // Helper function to open the image in a lightbox
-function openLightbox(imageDataURL) {
+function openLightbox(imageDataURL, file) {
     var lightboxContent = document.createElement('div');
     lightboxContent.style.textAlign = 'center';
 
@@ -511,6 +483,42 @@ function openLightbox(imageDataURL) {
     img.style.height = 'auto';
     img.style.marginBottom = '20px';
     lightboxContent.appendChild(img);
+
+    // Check if the user is on iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    if (isIOS) {
+        // Add a "Share" button for iOS
+        var shareButton = document.createElement('button');
+        shareButton.textContent = 'Share';
+        shareButton.style.display = 'inline-block';
+        shareButton.style.padding = '10px 20px';
+        shareButton.style.backgroundColor = '#4CAF50';
+        shareButton.style.color = 'white';
+        shareButton.style.border = 'none';
+        shareButton.style.borderRadius = '5px';
+        shareButton.style.cursor = 'pointer';
+        shareButton.style.marginBottom = '20px';
+        shareButton.onclick = function () {
+            if (navigator.share) {
+                navigator.share({
+                    files: [file],
+                    title: 'CatChat Answer',
+                    text: 'Download this image from CatChat!',
+                }).then(() => {
+                    console.log('Share Sheet opened successfully');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                    // Fallback: Show instructions
+                    alert('Sharing failed. Please long-press the image to save it.');
+                });
+            } else {
+                // Fallback: Show instructions
+                alert('Sharing not supported. Please long-press the image to save it.');
+            }
+        };
+        lightboxContent.appendChild(shareButton);
+    }
 
     // Add instructions for saving the image
     var instructions = document.createElement('p');
