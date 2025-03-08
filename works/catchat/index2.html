@@ -280,7 +280,6 @@ img.chat-icon {
 .cat-image {
     width: 100%;
     height: auto;}
-}
     </style>
 
 
@@ -395,6 +394,7 @@ img.chat-icon {
         // Function to download the answer as an image
         function downloadAnswer(question) {
     // Create a container for the content to be captured
+        console.log('downloadAnswer called');
     var container = document.createElement('div');
     container.style.width = '1024px';
     container.style.height = '1024px';
@@ -445,14 +445,17 @@ img.chat-icon {
 
     // Use html2canvas to capture the container
     html2canvas(container).then(canvas => {
+            console.log('Canvas generated successfully');
         // Remove the container from the DOM
         document.body.removeChild(container);
 
         // Convert canvas to image
         var image = canvas.toDataURL('image/png');
+            console.log('Image data URL generated');
 
         // Check if the user is on iOS
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            console.log('iOS detected, opening new tab');
 
         if (isIOS) {
             // iOS: Open image in a new tab
