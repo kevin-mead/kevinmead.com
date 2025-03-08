@@ -287,7 +287,7 @@ img.chat-icon {
 </head>
 
 <body>
-    <b style="font-size: 40px;">v01</b>
+    <b style="font-size: 40px;">v01.01</b>
     <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="theinternet.mp4" type="video/mp4">
@@ -393,7 +393,7 @@ img.chat-icon {
 }
 
         // Function to download the answer as an image
-function downloadAnswer(question) {
+        function downloadAnswer(question) {
     // Create a container for the content to be captured
     var container = document.createElement('div');
     container.style.width = '1024px';
@@ -451,8 +451,10 @@ function downloadAnswer(question) {
         // Convert canvas to image
         var image = canvas.toDataURL('image/png');
 
-        // Handle download based on the device
-        if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        // Check if the user is on iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isIOS) {
             // iOS: Open image in a new tab
             var newTab = window.open();
             newTab.document.write('<img src="' + image + '" alt="CatChat Answer" style="max-width: 100%; height: auto;">');
