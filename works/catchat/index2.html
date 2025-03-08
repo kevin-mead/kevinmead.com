@@ -286,7 +286,7 @@ img.chat-icon {
 </head>
 
 <body>
-    <b style="font-size: 40px;">v01.06</b>
+    <b style="font-size: 40px;">v01.07</b>
     <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="theinternet.mp4" type="video/mp4">
@@ -500,6 +500,7 @@ function openLightbox(imageDataURL, file) {
         shareButton.style.cursor = 'pointer';
         shareButton.style.marginBottom = '20px';
         shareButton.onclick = function () {
+            // Try sharing the file
             navigator.share({
                 files: [file],
                 title: 'CatChat Answer',
@@ -507,29 +508,65 @@ function openLightbox(imageDataURL, file) {
             }).then(() => {
                 console.log('Share Sheet opened successfully');
             }).catch((error) => {
-                console.error('Error sharing:', error);
-                // Fallback: Show instructions
-                alert('Sharing failed. Please long-press the image to save it.');
+                console.error('Error sharing file:', error);
+
+                // Fallback: Try sharing a URL
+                navigator.share({
+                    title: 'CatChat Answer',
+                    text: 'Download this image from CatChat!',
+                    url: window.location.href, // Share the current page URL
+                }).then(() => {
+                    console.log('Share Sheet opened successfully (URL fallback)');
+                }).catch((error) => {
+                    console.error('Error sharing URL:', error);
+
+                    // Final fallback: Show instructions
+                    alert('Sharing failed. Please long-press the image to save it.');
+                });
             });
         };
         lightboxContent.appendChild(shareButton);
     } else {
         console.log('Web Share API is not supported');
 
-        // Add a "Download" button as a fallback
-        var downloadButton = document.createElement('a');
-        downloadButton.href = imageDataURL;
-        downloadButton.download = 'catchat_answer.png';
-        downloadButton.textContent = 'Download';
-        downloadButton.style.display = 'inline-block';
-        downloadButton.style.padding = '10px 20px';
-        downloadButton.style.backgroundColor = '#4CAF50';
-        downloadButton.style.color = 'white';
-        downloadButton.style.textDecoration = 'none';
-        downloadButton.style.borderRadius = '5px';
-        downloadButton.style.cursor = 'pointer';
-        downloadButton.style.marginBottom = '20px';
-        lightboxContent.appendChild(downloadButton);
+        // Check if the user is on iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isIOS) {
+            // Add a "Save to Camera Roll" button for iOS
+            var saveButton = document.createElement('button');
+            saveButton.textContent = 'Save to Camera Roll';
+            saveButton.style.display = 'inline-block';
+            saveButton.style.padding = '10px 20px';
+            saveButton.style.backgroundColor = '#4CAF50';
+            saveButton.style.color = 'white';
+            saveButton.style.border = 'none';
+            saveButton.style.borderRadius = '5px';
+            saveButton.style.cursor = 'pointer';
+            saveButton.style.marginBottom = '20px';
+            saveButton.onclick = function () {
+                // Open the image in a new tab
+                var newTab = window.open();
+                newTab.document.write('<img src="' + imageDataURL + '" alt="CatChat Answer" style="max-width: 100%; height: auto;">');
+                newTab.document.close();
+            };
+            lightboxContent.appendChild(saveButton);
+        } else {
+            // Add a "Download" button for desktop browsers
+            var downloadButton = document.createElement('a');
+            downloadButton.href = imageDataURL;
+            downloadButton.download = 'catchat_answer.png';
+            downloadButton.textContent = 'Download';
+            downloadButton.style.display = 'inline-block';
+            downloadButton.style.padding = '10px 20px';
+            downloadButton.style.backgroundColor = '#4CAF50';
+            downloadButton.style.color = 'white';
+            downloadButton.style.textDecoration = 'none';
+            downloadButton.style.borderRadius = '5px';
+            downloadButton.style.cursor = 'pointer';
+            downloadButton.style.marginBottom = '20px';
+            lightboxContent.appendChild(downloadButton);
+        }
     }
 
     // Add instructions for saving the image
