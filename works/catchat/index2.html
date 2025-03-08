@@ -243,25 +243,43 @@ img.chat-icon {
             }
         }
 
-        /* style for the download icon and words */
+        /* style for the download button/resulting dl */
 
-        .download-container {
+ /* Download container */
+.download-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    cursor: pointer; /* Make the container look clickable */
 }
-        .download-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            margin-left: 10px;
-            vertical-align: middle;
-            color: black;
-        }
 
-        .download-text {
+/* Download icon */
+.download-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+/* Download text */
+.download-text {
     color: black;
     font-size: 16px;
+    cursor: pointer; /* Add pointer cursor on hover */
+}
+
+/* Cat image grid */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 20px; /* Spacing between images */
+    margin-bottom: 40px;
+}
+
+/* Cat images */
+.cat-image {
+    width: 100%;
+    height: auto;}
 }
     </style>
 
@@ -354,10 +372,10 @@ img.chat-icon {
         }
 
         setTimeout(function () {
-            // Add download icon and text
+            // Add clickable download container
             chatbox.innerHTML += `
-                <div class="download-container">
-                    <svg class="download-icon" onclick="downloadAnswer('${message}')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                <div class="download-container" onclick="downloadAnswer('${message}')">
+                    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
                         <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                     </svg>
                     <span class="download-text">Download Answer</span>
@@ -374,75 +392,96 @@ img.chat-icon {
 }
 
         // Function to download the answer as an image
-        function downloadAnswer(question) {
-            // Create a container for the content to be captured
-            var container = document.createElement('div');
-            container.style.width = '1024px';
-            container.style.height = '1024px';
-            container.style.backgroundColor = 'white';
-            container.style.padding = '20px';
-            container.style.boxSizing = 'border-box';
-            container.style.position = 'fixed';
-            container.style.top = '-10000px'; // Move off-screen
+function downloadAnswer(question) {
+    // Create a container for the content to be captured
+    var container = document.createElement('div');
+    container.style.width = '1024px';
+    container.style.height = '1024px';
+    container.style.backgroundColor = 'white';
+    container.style.padding = '20px';
+    container.style.boxSizing = 'border-box';
+    container.style.position = 'fixed';
+    container.style.top = '-10000px'; // Move off-screen
 
-            // Add the question
-            var questionElement = document.createElement('div');
-            questionElement.textContent = question;
-            questionElement.style.fontSize = '24px';
-            questionElement.style.marginBottom = '20px';
-            container.appendChild(questionElement);
+    // Add the question
+    var questionElement = document.createElement('div');
+    questionElement.textContent = question;
+    questionElement.style.fontSize = '32px';
+    questionElement.style.fontFamily = 'Orbitron, sans-serif';
+    questionElement.style.color = '#333';
+    questionElement.style.textAlign = 'center';
+    questionElement.style.marginBottom = '40px';
+    container.appendChild(questionElement);
 
-            // Add the cat images in a 3x2 grid
-            var grid = document.createElement('div');
-            grid.style.display = 'grid';
-            grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-            grid.style.gap = '10px';
-            grid.style.marginBottom = '20px';
+    // Add the cat images in a 3x2 grid
+    var grid = document.createElement('div');
+    grid.className = 'cat-grid'; // Use the new grid class
 
-            var images = chatbox.querySelectorAll('.cat-image');
-            images.forEach((img, index) => {
-                if (index < 6) { // Limit to 6 images
-                    var clone = img.cloneNode(true);
-                    clone.style.width = '100%';
-                    clone.style.height = 'auto';
-                    grid.appendChild(clone);
-                }
-            });
-            container.appendChild(grid);
-
-            // Add "catchat.net" text at the bottom
-            var footer = document.createElement('div');
-            footer.textContent = 'catchat.net';
-            footer.style.fontSize = '20px';
-            footer.style.textAlign = 'center';
-            container.appendChild(footer);
-
-            // Append the container to the body
-            document.body.appendChild(container);
-
-            // Use html2canvas to capture the container
-            html2canvas(container).then(canvas => {
-                // Remove the container from the DOM
-                document.body.removeChild(container);
-
-                // Convert canvas to image
-                var image = canvas.toDataURL('image/png');
-
-                // Handle download based on the device
-                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-                    // iOS: Open image in a new tab
-                    var newTab = window.open();
-                    newTab.document.write('<img src="' + image + '" alt="CatChat Answer">');
-                    newTab.document.close();
-                } else {
-                    // Desktop: Trigger download
-                    var link = document.createElement('a');
-                    link.href = image;
-                    link.download = 'catchat_answer.png';
-                    link.click();
-                }
-            });
+    var images = chatbox.querySelectorAll('.cat-image');
+    images.forEach((img, index) => {
+        if (index < 5) { // Limit to 5 images (3 on top, 2 below)
+            var clone = img.cloneNode(true);
+            clone.style.width = '100%';
+            clone.style.height = 'auto';
+            clone.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'; // Optional: Add shadow
+            grid.appendChild(clone);
         }
+    });
+    container.appendChild(grid);
+
+    // Add "catchat.net" text at the bottom
+    var footer = document.createElement('div');
+    footer.textContent = 'catchat.net';
+    footer.style.fontSize = '24px';
+    footer.style.fontFamily = 'Orbitron, sans-serif';
+    footer.style.color = '#DF73FF';
+    footer.style.textAlign = 'center';
+    footer.style.marginTop = '20px';
+    container.appendChild(footer);
+
+    // Append the container to the body
+    document.body.appendChild(container);
+
+    // Use html2canvas to capture the container
+    html2canvas(container).then(canvas => {
+        // Remove the container from the DOM
+        document.body.removeChild(container);
+
+        // Convert canvas to image
+        var image = canvas.toDataURL('image/png');
+
+        // Handle download based on the device
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+            // iOS: Open image in a new tab
+            var newTab = window.open();
+            newTab.document.write('<img src="' + image + '" alt="CatChat Answer" style="max-width: 100%; height: auto;">');
+            newTab.document.close();
+        } else if (/Android/.test(navigator.userAgent)) {
+            // Android: Use the Web Share API if available
+            if (navigator.share) {
+                canvas.toBlob(function (blob) {
+                    var file = new File([blob], 'catchat_answer.png', { type: 'image/png' });
+                    navigator.share({
+                        files: [file],
+                        title: 'CatChat Answer',
+                        text: 'Download this image from CatChat!',
+                    }).catch(console.error);
+                });
+            } else {
+                // Fallback: Open image in a new tab
+                var newTab = window.open();
+                newTab.document.write('<img src="' + image + '" alt="CatChat Answer" style="max-width: 100%; height: auto;">');
+                newTab.document.close();
+            }
+        } else {
+            // Desktop: Trigger download
+            var link = document.createElement('a');
+            link.href = image;
+            link.download = 'catchat_answer.png';
+            link.click();
+        }
+    });
+}
 
         // Response to "Yes" button
         function yes() {
