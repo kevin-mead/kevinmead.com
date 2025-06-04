@@ -27,6 +27,65 @@
             font-family: 'Myriad Web Pro', sans-serif;
         } */
 
+        /* what is catchat */
+/* About link styling */
+.about-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  background-color: rgba(223, 115, 255, 0.7);
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: 'Telegraf Regular', sans-serif;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.about-link:hover {
+  background-color: rgba(223, 115, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal content styling */
+.about-modal-content {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95),
+    rgba(230, 230, 230, 0.95)
+  );
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    inset 0 0 15px rgba(223, 115, 255, 0.4);
+  text-align: center;
+  color: #333;
+}
+
+.about-modal-content h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #DF73FF;
+  margin-top: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.about-modal-content p {
+  font-family: 'Telegraf Regular', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-modal-content em {
+  color: #666;
+  font-size: 0.9em;
+}
+
         .video-background {
             position: fixed;
             top: 0;
@@ -401,7 +460,16 @@
         <input type="text" id="userInput" autofocus placeholder="...">
         <img src="styledsendbutton.png" alt="Send" id="sendButton" onclick="send()">
     </div>
-what is catchat
+<!-- what is catchat -->
+<a href="#about-modal" class="about-link" data-lity>What is CatChat?</a>
+
+<div id="about-modal" class="lity-hide" style="background:transparent;max-width:600px;">
+  <div class="about-modal-content">
+    <h2>What is CatChat?</h2>
+    <p>lorem ipsum</p>
+    <p><em>find more projects at kevinmead.com</em></p>
+  </div>
+</div>
     <script>
         var chatbox = document.getElementById('chatbox');
         var userInput = document.getElementById('userInput');
