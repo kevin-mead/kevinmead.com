@@ -21,74 +21,196 @@
             src: url('fonts/Telegraf-UltraBold-800.woff');
             font-style: bold;
         }
-/* 
-        @font-face {
-            font-family: 'Myriad Web Pro';
-            src: url('fonts/myriad-web-pro.woff2') format('woff2'),
-                 url('fonts/myriad-web-pro.woff') format('woff');
-            font-display: swap;
-        } */
-/* 
-        body {
-            font-family: 'Myriad Web Pro', sans-serif;
-        } */
 
-/* what is catchat */
-.about-link {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-  background-color: rgba(223, 115, 255, 0.7);
-  padding: 10px 15px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-family: 'Telegraf Regular', sans-serif;
-  font-weight: bold;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+        /* what is catchat */
+        .about-link {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          color: white;
+          background-color: rgba(223, 115, 255, 0.7);
+          padding: 10px 15px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-family: 'Telegraf Regular', sans-serif;
+          font-weight: bold;
+          z-index: 1000;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          transition: all 0.3s ease;
+        }
+
+        .about-link:hover {
+          background-color: rgba(223, 115, 255, 0.9);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal content styling */
+        .about-modal-content {
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.95),
+            rgba(230, 230, 230, 0.95)
+          );
+          padding: 30px;
+          border-radius: 20px;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.2),
+            inset 0 0 15px rgba(223, 115, 255, 0.4);
+          text-align: center;
+          color: #333;
+        }
+
+        .about-modal-content h2 {
+          font-family: 'Orbitron', sans-serif;
+          color: #DF73FF;
+          margin-top: 0;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-modal-content p {
+          font-family: 'Telegraf Regular', sans-serif;
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        .about-modal-content em {
+          color: #666;
+          font-size: 0.9em;
+        }
+
+        /* scrollable lity modal */
+    .lity-content .about-modal-content {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    padding-right: 15px; /* Space for scrollbar */
 }
 
-.about-link:hover {
-  background-color: rgba(223, 115, 255, 0.9);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+/* Style the scrollbar for the about modal */
+/* Make the about modal content scrollable */
+.lity-content .about-modal-content {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    padding-right: 10px; /* Slightly less space for the wider scrollbar */
 }
 
-/* Modal content styling */
+/* Style the scrollbar for the about modal - Frutiger Aero/Mac OS Tiger style */
+.lity-content .about-modal-content::-webkit-scrollbar {
+    width: 15px; /* Wider for the classic Mac look */
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-track {
+    background: linear-gradient(
+        to bottom,
+        rgba(200, 200, 200, 0.3),
+        rgba(180, 180, 180, 0.3)
+    );
+    border-radius: 10px;
+    box-shadow: 
+        inset 0 0 6px rgba(0, 0, 0, 0.1),
+        inset 0 0 1px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(150, 150, 150, 0.3);
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        to right,
+        #4A90D9, /* Light blue */
+        #3B7FC1, /* Medium blue */
+        #2D6CA9  /* Dark blue */
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 0 3px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        to right,
+        #5BA0E9,
+        #4C8FD1,
+        #3D7EB9
+    );
+    box-shadow: 
+        0 0 5px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(
+        to right,
+        #2D6CA9,
+        #3B7FC1,
+        #4A90D9
+    );
+    box-shadow: 
+        inset 0 0 3px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Optional: Add scrollbar buttons (arrows) for extra Mac-like feel */
+.lity-content .about-modal-content::-webkit-scrollbar-button {
+    display: block;
+    height: 15px;
+    background: linear-gradient(
+        to bottom,
+        rgba(220, 220, 220, 0.5),
+        rgba(200, 200, 200, 0.5)
+    );
+    border: 1px solid rgba(150, 150, 150, 0.3);
+    border-radius: 3px;
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-button:hover {
+    background: linear-gradient(
+        to bottom,
+        rgba(230, 230, 230, 0.7),
+        rgba(210, 210, 210, 0.7)
+    );
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-button:active {
+    background: linear-gradient(
+        to bottom,
+        rgba(200, 200, 200, 0.7),
+        rgba(180, 180, 180, 0.7)
+    );
+}
+
+/* Firefox scrollbar styling */
 .about-modal-content {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.95),
-    rgba(230, 230, 230, 0.95)
-  );
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.2),
-    inset 0 0 15px rgba(223, 115, 255, 0.4);
-  text-align: center;
-  color: #333;
+    scrollbar-width: thin;
+    scrollbar-color: #bf4ad9d6 rgba(200, 200, 200, 0.3);
 }
 
-.about-modal-content h2 {
-  font-family: 'Orbitron', sans-serif;
-  color: #DF73FF;
-  margin-top: 0;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+/* Enhance the modal with Frutiger Aero glass effect */
+.about-modal-content {
+    /* Keep existing styles, but enhance with: */
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 0 15px rgba(223, 115, 255, 0.4),
+        0 0 20px rgba(74, 144, 217, 0.2), /* Blue glow */
+        0 0 5px rgba(255, 255, 255, 0.5) inset !important; /* Inner white glow */
 }
 
+/* Add a subtle gradient to paragraphs for depth */
 .about-modal-content p {
-  font-family: 'Telegraf Regular', sans-serif;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.about-modal-content em {
-  color: #666;
-  font-size: 0.9em;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 12px 0 !important;
 }
 
         .video-background {
@@ -124,14 +246,13 @@
         }
 
         body {
-            /* font-family: 'Orbitron', sans-serif; */
             font-family: 'Telegraf Regular';
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #DF73FF;
+            background-color: #000000;
             padding: 10px;
             overflow-y: hidden;
             overflow-x: hidden;
@@ -230,11 +351,13 @@
             max-width: none !important;
             max-height: none !important;
         }
-        
+        /* this is the property for when you click a cat img answer. w/h makes it large enough to see */
         .lity-wrap .lity-content img {
             max-width: 70vw !important;
             max-height: 70vh !important;
             object-fit: contain !important;
+            width: 60vw;
+            height:60vh;
         }
 
         .lity-container {
@@ -433,7 +556,6 @@
         .generated-footer {
             font-family: 'Orbitron', sans-serif;
             font-size: 24px;
-            /* color: #DF73FF; */
             color: rgb(0, 0, 0);
             text-align: center;
             margin-top: auto;
@@ -453,11 +575,12 @@
 </head>
 <body>
     <b style="font-size: 40px; color: white;">BETA</b>
-    <div class="video-background">
+
+    <!-- <div class="video-background">
         <video autoplay muted loop playsinline>
             <source src="theinternet.mp4" type="video/mp4">
             Your browser does not support the video tag.
-        </video>
+        </video> -->
     </div>
 
     <div id="chatbox"></div>
@@ -465,16 +588,26 @@
         <input type="text" id="userInput" autofocus placeholder="...">
         <img src="styledsendbutton.png" alt="Send" id="sendButton" onclick="send()">
     </div>
-<!-- what is catchat -->
-<a href="#about-modal" class="about-link" data-lity>What is CatChat?</a>
+    <!-- what is catchat -->
+    <a href="#about-modal" class="about-link" data-lity>What is CatChat?</a>
 
-<div id="about-modal" class="lity-hide" style="background:transparent;max-width:600px;">
-  <div class="about-modal-content">
-    <h2>What is CatChat?</h2>
-    <p>lorem ipsum</p>
-    <p><em>find more projects at kevinmead.com</em></p>
-  </div>
-</div>
+    <div id="about-modal" class="lity-hide" style="background:transparent;max-width:600px;">
+      <div class="about-modal-content">
+        <h2>What is CatChat?</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+        </p>
+        <p><em>find more projects at kevinmead.com</em></p>
+      </div>
+    </div>
     <script>
         var chatbox = document.getElementById('chatbox');
         var userInput = document.getElementById('userInput');
@@ -482,7 +615,7 @@
         var chatData = [];
         var answerMap = {};
 
-        // Load cat images
+        // Load cat images - IMPORTANT: Your images are numbered 0001.jpg to 0999.jpg
         for (let i = 1; i <= 999; i++) {
             let num = String(i).padStart(4, '0');
             images.push(`images3/${num}.jpg`);
@@ -490,6 +623,83 @@
 
         var lastActivity = new Date();
         var inactiveMessageSent = false;
+
+        // --- CORRECTED DETERMINISTIC IMAGE SELECTION LOGIC ---
+ // --- FLEXIBLE TIME-BASED VERSION ---
+function deterministicImageIndices(question, totalImages=999, numResults=5) {
+    // Simple hash function
+    function simpleStringHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash |= 0; // Convert to 32-bit integer
+        }
+        return Math.abs(hash);
+    }
+    
+    // Get time-based seed that changes every hour
+    function getTimeSeed() {
+        const now = new Date();
+        // Create a unique number that changes every hour
+        // Using UTC to avoid timezone issues
+        const year = now.getUTCFullYear();
+        const month = now.getUTCMonth();
+        const day = now.getUTCDate();
+        const hour = now.getUTCHours();
+        
+        // Create a unique hour ID (will be same for all minutes within that hour)
+        // Formula: (days since year 0 * 24 + hour) gives unique hourly value
+        // This properly handles month boundaries and year changes
+        const dateObj = new Date(Date.UTC(year, month, day));
+        const daysSinceEpoch = Math.floor(dateObj.getTime() / (1000 * 60 * 60 * 24));
+        const hourId = daysSinceEpoch * 24 + hour;
+        
+        return hourId;
+    }
+    
+    // Create combined seed from question and hour
+    const questionHash = simpleStringHash(question.toLowerCase().trim());
+    const hourId = getTimeSeed();
+    
+    // Mix question hash with hour ID using a mixing function
+    // This ensures good distribution even with similar questions
+    function mixSeeds(a, b) {
+        // MurmurHash3 finalizer-like mixing
+        let h = a ^ b;
+        h ^= h >>> 16;
+        h = Math.imul(h, 0x85ebca6b);
+        h ^= h >>> 13;
+        h = Math.imul(h, 0xc2b2ae35);
+        h ^= h >>> 16;
+        return h >>> 0; // Ensure positive 32-bit integer
+    }
+    
+    let seed = mixSeeds(questionHash, hourId);
+    if (seed === 0) seed = 1; // Ensure non-zero seed
+    
+    const indices = new Set();
+    
+    // Generate unique indices
+    while (indices.size < numResults) {
+        // Linear congruential generator for deterministic pseudo-randomness
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        
+        // Create index with good distribution
+        const index = ((seed % totalImages) + 1);
+        
+        // Ensure valid range
+        if (index >= 1 && index <= totalImages) {
+            indices.add(index);
+        }
+        
+        // Safety break
+        if (indices.size === numResults || seed === 0) break;
+    }
+    
+    // Convert Set to Array
+    return Array.from(indices);
+}
+        // --- END CORRECTED LOGIC ---
 
         userInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
@@ -532,9 +742,25 @@
             setTimeout(function () {
                 document.querySelector('.loading-container').remove();
                 
+                // Get deterministic image indices for this question
+                var imageIndices = deterministicImageIndices(message, images.length, 5);
+                console.log("Question:", message, "Indices:", imageIndices, "Image paths:", imageIndices.map(idx => images[idx-1])); // Debug log
+                var selectedImages = imageIndices.map(index => images[index-1]); // -1 because array is 0-indexed
+                
+                // Debug: Check if any images are undefined
+                selectedImages.forEach((img, i) => {
+                    if (!img) {
+                        console.error("Undefined image at index", imageIndices[i], "for question:", message);
+                    }
+                });
+                
                 for (let i = 0; i < 5; i++) {
                     setTimeout(function () {
-                        var image = images[Math.floor(Math.random() * images.length)];
+                        var image = selectedImages[i];
+                        if (!image) {
+                            // Fallback to a default image if something went wrong
+                            image = images[0]; // First image as fallback
+                        }
                         answerMap[answerId].push(image);
                         
                         var anchor = document.createElement('a');
@@ -544,6 +770,11 @@
                         var img = document.createElement('img');
                         img.src = image;
                         img.className = 'cat-image';
+                        img.onerror = function() {
+                            console.error("Failed to load image:", image);
+                            // Try a fallback image
+                            this.src = images[Math.floor(Math.random() * images.length)];
+                        };
                         anchor.appendChild(img);
 
                         chatbox.appendChild(anchor);
@@ -570,100 +801,100 @@
         }
 
         function downloadAnswer(answerId, question) {
-    // Create container with fixed dimensions
-    var container = document.createElement('div');
-    container.className = 'generated-container';
-    
-    // Content wrapper for proper layout
-    var contentWrapper = document.createElement('div');
-    contentWrapper.className = 'content-wrapper';
-    container.appendChild(contentWrapper);
+            // Create container with fixed dimensions
+            var container = document.createElement('div');
+            container.className = 'generated-container';
+            
+            // Content wrapper for proper layout
+            var contentWrapper = document.createElement('div');
+            contentWrapper.className = 'content-wrapper';
+            container.appendChild(contentWrapper);
 
-    // Format question with quotes and limit to 61 characters
-    let formattedQuestion = question;
-    if (formattedQuestion.length > 61) {
-        formattedQuestion = formattedQuestion.substring(0, 120) + '...';
-    }
-    formattedQuestion = `"${formattedQuestion}"`;
+            // Format question with quotes and limit to 61 characters
+            let formattedQuestion = question;
+            if (formattedQuestion.length > 61) {
+                formattedQuestion = formattedQuestion.substring(0, 120) + '...';
+            }
+            formattedQuestion = `"${formattedQuestion}"`;
 
-    // Adjust font size based on original question length
-    var fontSize = Math.max(24 - Math.floor(question.length / 10), 14);
+            // Adjust font size based on original question length
+            var fontSize = Math.max(24 - Math.floor(question.length / 10), 14);
 
-    // Add question text
-    var questionElement = document.createElement('div');
-    questionElement.className = 'question-text';
-    questionElement.style.fontSize = fontSize + 'px';
-    questionElement.textContent = formattedQuestion;
-    contentWrapper.appendChild(questionElement);
+            // Add question text
+            var questionElement = document.createElement('div');
+            questionElement.className = 'question-text';
+            questionElement.style.fontSize = fontSize + 'px';
+            questionElement.textContent = formattedQuestion;
+            contentWrapper.appendChild(questionElement);
 
-    // Add cat images
-    var answerImages = answerMap[answerId] || [];
-    
-    // First row (3 images)
-    var grid = document.createElement('div');
-    grid.className = 'cat-grid';
-    for (let i = 0; i < 3 && i < answerImages.length; i++) {
-        var img = document.createElement('img');
-        img.src = answerImages[i];
-        img.style.width = '100%';
-        img.style.height = 'auto';
-        grid.appendChild(img);
-    }
-    contentWrapper.appendChild(grid);
+            // Add cat images
+            var answerImages = answerMap[answerId] || [];
+            
+            // First row (3 images)
+            var grid = document.createElement('div');
+            grid.className = 'cat-grid';
+            for (let i = 0; i < 3 && i < answerImages.length; i++) {
+                var img = document.createElement('img');
+                img.src = answerImages[i];
+                img.style.width = '100%';
+                img.style.height = 'auto';
+                grid.appendChild(img);
+            }
+            contentWrapper.appendChild(grid);
 
-    // Second row (2 centered images)
-    if (answerImages.length > 3) {
-        var secondRow = document.createElement('div');
-        secondRow.className = 'second-row';
-        for (let i = 3; i < 5 && i < answerImages.length; i++) {
-            var img = document.createElement('img');
-            img.src = answerImages[i];
-            img.style.width = '180px';
-            img.style.height = 'auto';
-            secondRow.appendChild(img);
+            // Second row (2 centered images)
+            if (answerImages.length > 3) {
+                var secondRow = document.createElement('div');
+                secondRow.className = 'second-row';
+                for (let i = 3; i < 5 && i < answerImages.length; i++) {
+                    var img = document.createElement('img');
+                    img.src = answerImages[i];
+                    img.style.width = '180px';
+                    img.style.height = 'auto';
+                    secondRow.appendChild(img);
+                }
+                contentWrapper.appendChild(secondRow);
+            }
+
+            // Footer
+            var footer = document.createElement('div');
+            footer.className = 'generated-footer';
+            footer.textContent = 'catchat.net';
+            
+            // Add favicon below the text
+            var favicon = document.createElement('img');
+            favicon.className = 'favicon-footer';
+            favicon.src = 'favicon.png';
+            favicon.alt = 'CatChat Favicon';
+            footer.appendChild(favicon);
+            
+            container.appendChild(footer);
+
+            document.body.appendChild(container);
+
+            // Capture with html2canvas
+            html2canvas(container, {
+                scale: 2,
+                backgroundColor: '#FFFFFF',
+                width: 600,
+                height: 600,
+                windowWidth: 600,
+                windowHeight: 600,
+                logging: false
+            }).then(canvas => {
+                document.body.removeChild(container);
+                
+                // Create filename
+                let safeName = question.replace(/[^a-z0-9]/gi, '_').substring(0, 80);
+                let filename = 'catchat_' + (safeName || 'answer') + '.png';
+                
+                // Open lightbox
+                openLightbox(canvas.toDataURL('image/png'), filename);
+            }).catch(err => {
+                console.error('Error generating image:', err);
+                document.body.removeChild(container);
+            });
         }
-        contentWrapper.appendChild(secondRow);
-    }
-
-    // Footer
-    var footer = document.createElement('div');
-    footer.className = 'generated-footer';
-    footer.textContent = 'catchat.net';
-    
-    // Add favicon below the text
-    var favicon = document.createElement('img');
-    favicon.className = 'favicon-footer';
-    favicon.src = 'favicon.png';
-    favicon.alt = 'CatChat Favicon';
-    footer.appendChild(favicon);
-    
-    container.appendChild(footer);
-
-    document.body.appendChild(container);
-
-    // Capture with html2canvas
-    html2canvas(container, {
-        scale: 2,
-        backgroundColor: '#FFFFFF',
-        width: 600,
-        height: 600,
-        windowWidth: 600,
-        windowHeight: 600,
-        logging: false
-    }).then(canvas => {
-        document.body.removeChild(container);
-        
-        // Create filename
-        let safeName = question.replace(/[^a-z0-9]/gi, '_').substring(0, 80);
-        let filename = 'catchat_' + (safeName || 'answer') + '.png';
-        
-        // Open lightbox
-        openLightbox(canvas.toDataURL('image/png'), filename);
-    }).catch(err => {
-        console.error('Error generating image:', err);
-        document.body.removeChild(container);
-    });
-}
 
         function openLightbox(imageDataURL, filename) {
             var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
@@ -687,7 +918,7 @@
             instructions.style.marginTop = '15px';
 
             if (!isMobile) {
-                // Download button for desktop - now positioned below the lightbox content
+                // Download button for desktop - positioned below the lightbox content
                 var downloadBtn = document.createElement('a');
                 downloadBtn.href = imageDataURL;
                 downloadBtn.download = filename;
@@ -723,9 +954,9 @@
             chatbox.innerHTML += `
                 <b>
                     <img src="catchat_silo.png" alt="CatChat" class="chat-icon">:
-                </b> Sorry. Ask your question again. <br>
+                </b> Sorry. Maybe ask your question again later. <br>
             `;
-            chatData.push({ pantherchat: 'Sorry. Ask your question again.', answered: false });
+            chatData.push({ pantherchat: 'Maybe ask your question again later.', answered: false });
             chatbox.scrollTop = chatbox.scrollHeight;
             saveChatData();
         }
