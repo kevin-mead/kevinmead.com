@@ -21,6 +21,14 @@
             src: url('fonts/Telegraf-UltraBold-800.woff');
             font-style: bold;
         }
+        @font-face {
+            font-family: 'Myriad Web Pro';
+            src: url('MyriadWebPro.woff2') format('woff2'),
+            url('MyriadWebPro.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+}
 
         /* what is catchat */
         .about-link {
@@ -62,23 +70,187 @@
           color: #333;
         }
 
+        /* Inside your <style> block */
+    .about-modal-content .cat-countdown-gif {
+        display: block; /* Allows margin: auto for centering */
+        margin: 15px auto; /* Centers the image */
+        height: 50px !important; /* 🔥 ADDED !important to force the small size */
+        width: auto !important; /* 🔥 ADDED !important to force the aspect ratio */
+        border-radius: 10px;
+        }
+
         .about-modal-content h2 {
           font-family: 'Orbitron', sans-serif;
-          color: #DF73FF;
+          color: #000000;
           margin-top: 0;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+          /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); */
+          font-size: 24px;
+        }
+
+        .about-modal-content h3 {
+          font-family: 'Orbitron', sans-serif;
+          color: #000000;
+          /* FIX: Reduce default top/bottom margin for headings to tighten them up */
+          margin-top: 5px; 
+          margin-bottom: 5px; 
+          /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); */
+          font-size: 16px;
         }
 
         .about-modal-content p {
           font-family: 'Telegraf Regular', sans-serif;
           line-height: 1.6;
-          margin-bottom: 20px;
+          /* FIX: Explicitly reduce the default top/bottom margin */
+          margin: 5px 0 5px 0; 
+          
+          /* Keep your existing style enhancements */
+          background: linear-gradient(
+              to right,
+              transparent,
+              rgba(255, 255, 255, 0.05),
+              transparent
+          );
+          padding: 8px 12px;
+          border-radius: 5px;
         }
 
         .about-modal-content em {
           color: #666;
           font-size: 0.9em;
         }
+
+        /* scrollable lity modal */
+    .lity-content .about-modal-content {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    padding-right: 15px; /* Space for scrollbar */
+}
+
+/* Style the scrollbar for the about modal */
+/* Make the about modal content scrollable */
+.lity-content .about-modal-content {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    padding-right: 10px; /* Slightly less space for the wider scrollbar */
+}
+
+/* Style the scrollbar for the about modal - Frutiger Aero/Mac OS Tiger style */
+.lity-content .about-modal-content::-webkit-scrollbar {
+    width: 15px; /* Wider for the classic Mac look */
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-track {
+    background: linear-gradient(
+        to bottom,
+        rgba(200, 200, 200, 0.3),
+        rgba(180, 180, 180, 0.3)
+    );
+    border-radius: 10px;
+    box-shadow: 
+        inset 0 0 6px rgba(0, 0, 0, 0.1),
+        inset 0 0 1px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(150, 150, 150, 0.3);
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        to right,
+        #4A90D9, /* Light blue */
+        #3B7FC1, /* Medium blue */
+        #2D6CA9  /* Dark blue */
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 0 3px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        to right,
+        #5BA0E9,
+        #4C8FD1,
+        #3D7EB9
+    );
+    box-shadow: 
+        0 0 5px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(
+        to right,
+        #2D6CA9,
+        #3B7FC1,
+        #4A90D9
+    );
+    box-shadow: 
+        inset 0 0 3px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Optional: Add scrollbar buttons (arrows) for extra Mac-like feel */
+.lity-content .about-modal-content::-webkit-scrollbar-button {
+    display: block;
+    height: 15px;
+    background: linear-gradient(
+        to bottom,
+        rgba(220, 220, 220, 0.5),
+        rgba(200, 200, 200, 0.5)
+    );
+    border: 1px solid rgba(150, 150, 150, 0.3);
+    border-radius: 3px;
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-button:hover {
+    background: linear-gradient(
+        to bottom,
+        rgba(230, 230, 230, 0.7),
+        rgba(210, 210, 210, 0.7)
+    );
+}
+
+.lity-content .about-modal-content::-webkit-scrollbar-button:active {
+    background: linear-gradient(
+        to bottom,
+        rgba(200, 200, 200, 0.7),
+        rgba(180, 180, 180, 0.7)
+    );
+}
+
+/* Firefox scrollbar styling */
+.about-modal-content {
+    scrollbar-width: thin;
+    /* scrollbar-color: #bf4ad9d6 rgba(200, 200, 200, 0.3); */
+}
+
+/* Enhance the modal with Frutiger Aero glass effect */
+.about-modal-content {
+    /* Keep existing styles, but enhance with: */
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 0 15px rgba(223, 115, 255, 0.4),
+        0 0 20px rgba(74, 144, 217, 0.2), /* Blue glow */
+        0 0 5px rgba(255, 255, 255, 0.5) inset !important; /* Inner white glow */
+}
+
+/* Add a subtle gradient to paragraphs for depth */
+.about-modal-content p {
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 3px 0 !important; 
+}
 
         .video-background {
             position: fixed;
@@ -113,7 +285,8 @@
         }
 
         body {
-            font-family: 'Telegraf Regular';
+            /* font-family: 'Telegraf Regular'; */
+            font-family: 'Myriad Web Pro', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -136,7 +309,8 @@
         }
 
         .header-container h1 {
-            font-family: 'Black_Future', sans-serif;
+            /* font-family: 'Black_Future', sans-serif; */
+            font-family: Arial, Helvetica, sans-serif
             font-size: 11vw;
             color: #FFFFFF;
             text-align: center;
@@ -173,10 +347,9 @@
             box-sizing: border-box;
             word-wrap: break-word;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            box-shadow:
-                inset 0 8px 12px rgba(255, 255, 255, 0.6),
-                inset 0 -8px 12px rgba(0, 0, 0, 0.4),
-                0 12px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0px 2px 1px rgba(255, 255, 255, 0.3), inset 0px -2px 1px rgba(0, 0, 0, 0.4);
+            filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.3));
+            border-radius: 15px;
             background-image: linear-gradient(
                 to bottom,
                 rgba(255, 255, 255, 0.8),
@@ -218,11 +391,13 @@
             max-width: none !important;
             max-height: none !important;
         }
-        
+        /* this is the property for when you click a cat img answer. w/h makes it large enough to see */
         .lity-wrap .lity-content img {
             max-width: 70vw !important;
             max-height: 70vh !important;
             object-fit: contain !important;
+            width: 60vw;
+            height:60vh;
         }
 
         .lity-container {
@@ -262,9 +437,11 @@
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 12pt;
+            /* font-size: 12pt; */
+            font-size: 18px;
             padding: 10px 20px;
-            font-family: 'orbitron', sans-serif;
+            /* font-family: 'orbitron', sans-serif; */
+            font-family: 'Myriad Web Pro', Arial, sans-serif;
             text-transform: uppercase;
             border-radius: 25px;
         }
@@ -316,10 +493,10 @@
 
         .download-text {
             color: black;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
             font-weight: bold;
-            font-family: orbitron;
+            /* font-family: orbitron; */
         }
 
         .cat-grid {
@@ -377,6 +554,8 @@
             margin: 15px 0;
             color: black;
             width: 100%;
+            font-family: 'Orbitron', sans-serif;
+
         }
 
         /* NEW STYLES FOR PERFECT SQUARE IMAGE */
@@ -439,7 +618,7 @@
     </style>
 </head>
 <body>
-    <b style="font-size: 40px; color: white;">BETA</b>
+    <!-- <b style="font-size: 40px; color: white;">BETA</b> -->
 
     <!-- <div class="video-background">
         <video autoplay muted loop playsinline>
@@ -454,16 +633,33 @@
         <img src="styledsendbutton.png" alt="Send" id="sendButton" onclick="send()">
     </div>
     <!-- what is catchat -->
-    <a href="#about-modal" class="about-link" data-lity>What is CatChat?</a>
-
+    <a href="#about-modal" class="about-link" data-lity><img src="catchat_silo.png" alt="CatChat" class="chat-icon">?</a>
     <div id="about-modal" class="lity-hide" style="background:transparent;max-width:600px;">
       <div class="about-modal-content">
         <h2>What is CatChat?</h2>
-        <p>lorem ipsum</p>
-        <p><em>find more projects at kevinmead.com</em></p>
+                <img alt="cat gif" class="cat-countdown-gif" src="1_5_gif.gif">
+        
+        <h3>CatChat offers insights using polyptic inference.</h3>
+        <p>
+CatChat offers insights using polyptic inference. It engages with memetic, apophenic, and spiritual technologies in order to deliver better answers to subjective problems than predictive text models like ChatGPT.
+        </p>
+
+        <h3>Answers are not random, and are not always the same.</h3>          
+  <p>
+        CatChat’s decisions are partially influenced by feedback. Check <a href="https://www.catchat.net/backend/" target="_blank">catchat.net/backend</a> to see how it’s doing.</p>
+<h3>Need to go deeper?</h3>
+        <p>Sharing your answer produces more meaning and context. Show them to somebody or put them online. </p> 
+        <h3>The less you seek to understand the methodologies, the more you may infer.</h3>
+        <br>
+        <p class="citation">
+            <em>Cats were rehomed from <a href="https://www.cs.toronto.edu/~kriz/cifar.html " target="_blank">CIFAR-10</a>, a depreciated machine learning image training dataset. </em>
+        </p>
+        <p class="citation">
+            <em><a href="https://kevinmead.com/" target="_blank">More Projects</a></em>
+        </p>
       </div>
     </div>
-    <script>
+<script>
         var chatbox = document.getElementById('chatbox');
         var userInput = document.getElementById('userInput');
         var images = [];
@@ -479,62 +675,98 @@
         var lastActivity = new Date();
         var inactiveMessageSent = false;
 
-        // --- CORRECTED DETERMINISTIC IMAGE SELECTION LOGIC ---
-        function deterministicImageIndices(question, totalImages=999, numResults=5) {
-            // Simple but effective hash function
-            function simpleStringHash(str) {
-                let hash = 0;
-                for (let i = 0; i < str.length; i++) {
-                    const char = str.charCodeAt(i);
-                    hash = ((hash << 5) - hash) + char;
-                    hash = hash & hash; // Convert to 32-bit integer
-                }
-                return Math.abs(hash) + 1; // +1 to ensure we don't get 0
-            }
+        // --- NEW FUNCTION TO CALCULATE TIME UNTIL NEXT HOUR CHANGE ---
+        function getTimeUntilNextHourChange() {
+            const now = new Date();
+            // Calculate milliseconds until the next hour (e.g., 6:00:00 -> 7:00:00)
+            const nextHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
             
-            // Create deterministic seed from question
-            const normalizedQuestion = question.toLowerCase().trim();
-            const questionHash = simpleStringHash(normalizedQuestion);
+            const msUntil = nextHour.getTime() - now.getTime();
             
-            // Use the hash as a seed for deterministic pseudo-randomness
-            const indices = [];
-            let seed = questionHash;
+            // Convert milliseconds to minutes and seconds
+            const totalSeconds = Math.floor(msUntil / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
             
-            // Generate 5 unique indices (1-999 range for your images)
-            for (let i = 0; i < numResults; i++) {
-                // Mix the seed differently for each index
-                seed = (seed * 1664525 + 1013904223) & 0xFFFFFFFF;
-                
-                // Combine with question and position for variety
-                const combined = (seed ^ (questionHash * (i + 1))) >>> 0;
-                
-                // Generate index in range 1-999 (to match your image numbering)
-                let index = (combined % totalImages) + 1; // +1 ensures range 1-999
-                
-                // Ensure uniqueness and valid range
-                let attempts = 0;
-                while ((indices.includes(index) || index < 1 || index > 999) && attempts < 100) {
-                    seed = (seed * 1103515245 + 12345) & 0xFFFFFFFF;
-                    index = ((seed + i) % totalImages) + 1;
-                    attempts++;
-                }
-                
-                // If still duplicate or out of range, use fallback
-                if (indices.includes(index) || index < 1 || index > 999) {
-                    index = ((questionHash + i * 31) % totalImages) + 1;
-                    let fallbackAttempts = 0;
-                    while ((indices.includes(index) || index < 1 || index > 999) && fallbackAttempts < 100) {
-                        index = (index + 1) % 1000;
-                        if (index === 0) index = 1; // Ensure not 0
-                        fallbackAttempts++;
-                    }
-                }
-                
-                indices.push(index);
-            }
-            
-            return indices;
+            return { minutes, seconds };
         }
+        // --- END NEW FUNCTION ---
+
+        // --- CORRECTED DETERMINISTIC IMAGE SELECTION LOGIC ---
+ // --- FLEXIBLE TIME-BASED VERSION ---
+function deterministicImageIndices(question, totalImages=999, numResults=5) {
+    // Simple hash function
+    function simpleStringHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash |= 0; // Convert to 32-bit integer
+        }
+        return Math.abs(hash);
+    }
+    
+    // Get time-based seed that changes every hour
+    function getTimeSeed() {
+        const now = new Date();
+        // Create a unique number that changes every hour
+        // Using UTC to avoid timezone issues
+        const year = now.getUTCFullYear();
+        const month = now.getUTCMonth();
+        const day = now.getUTCDate();
+        const hour = now.getUTCHours();
+        
+        // Create a unique hour ID (will be same for all minutes within that hour)
+        // Formula: (days since year 0 * 24 + hour) gives unique hourly value
+        // This properly handles month boundaries and year changes
+        const dateObj = new Date(Date.UTC(year, month, day));
+        const daysSinceEpoch = Math.floor(dateObj.getTime() / (1000 * 60 * 60 * 24));
+        const hourId = daysSinceEpoch * 24 + hour;
+        
+        return hourId;
+    }
+    
+    // Create combined seed from question and hour
+    const questionHash = simpleStringHash(question.toLowerCase().trim());
+    const hourId = getTimeSeed();
+    
+    // Mix question hash with hour ID using a mixing function
+    // This ensures good distribution even with similar questions
+    function mixSeeds(a, b) {
+        // MurmurHash3 finalizer-like mixing
+        let h = a ^ b;
+        h ^= h >>> 16;
+        h = Math.imul(h, 0x85ebca6b);
+        h ^= h >>> 13;
+        h = Math.imul(h, 0xc2b2ae35);
+        h ^= h >>> 16;
+        return h >>> 0; // Ensure positive 32-bit integer
+    }
+    
+    let seed = mixSeeds(questionHash, hourId);
+    if (seed === 0) seed = 1; // Ensure non-zero seed
+    
+    const indices = new Set();
+    
+    // Generate unique indices
+    while (indices.size < numResults) {
+        // Linear congruential generator for deterministic pseudo-randomness
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        
+        // Create index with good distribution
+        const index = ((seed % totalImages) + 1);
+        
+        // Ensure valid range
+        if (index >= 1 && index <= totalImages) {
+            indices.add(index);
+        }
+        
+        // Safety break
+        if (indices.size === numResults || seed === 0) break;
+    }
+    
+    // Convert Set to Array
+    return Array.from(indices);
+}
         // --- END CORRECTED LOGIC ---
 
         userInput.addEventListener('keydown', function (e) {
@@ -624,7 +856,7 @@
                             <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
-                            <span class="download-text">Download Answer</span>
+                            <span class="download-text">Download & Share</span>
                         </div>
                     `;
 
@@ -786,16 +1018,21 @@
             saveChatData();
         }
 
+        // --- MODIFIED NO FUNCTION ---
         function no() {
+            const time = getTimeUntilNextHourChange();
+            const timeString = `like ${time.minutes} minutes`;
+            
             chatbox.innerHTML += `
                 <b>
                     <img src="catchat_silo.png" alt="CatChat" class="chat-icon">:
-                </b> Sorry. Maybe ask your question again later. <br>
+                </b> Sorry. Maybe ask your question again in ${timeString}? <br>
             `;
-            chatData.push({ pantherchat: 'Maybe ask your question again later.', answered: false });
+            chatData.push({ pantherchat: `Sorry. Maybe ask your question again in ${timeString}?`, answered: false });
             chatbox.scrollTop = chatbox.scrollHeight;
             saveChatData();
         }
+        // --- END MODIFIED NO FUNCTION ---
 
         setTimeout(function () {
             chatbox.innerHTML += `
@@ -806,5 +1043,6 @@
             chatbox.scrollTop = chatbox.scrollHeight;
         }, 2000);
     </script>
+
 </body>
 </html>
